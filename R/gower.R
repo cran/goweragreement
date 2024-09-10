@@ -138,10 +138,9 @@ row.stat.max = function(data, dist, ...)
 #' @examples
 #'
 #' # Fit the liver data, using the mean distance for each row of the data matrix.
-#' # The range (which is equal to 4) must be passed to \code{\link{gower.agree}}
-#' # since these data are ordinal and the L1 distance function is used. We assume
-#' # a one-way sampling design for these data, i.e., units are random and coders
-#' # are fixed.
+#' # The range (which is equal to 4) must be passed to gower.agree since these
+#' # data are ordinal and the L1 distance function is used. We assume a one-way
+#' # sampling design for these data, i.e., units are random and coders are fixed.
 #'
 #' data(liver)
 #' liver = as.matrix(liver)
@@ -277,7 +276,7 @@ influence.gower = function(model, units, coders, ...)
         {
             mod.call$data = model$data[-j, ]
             fit = eval(mod.call)
-            fits.units = c(fits.units, fit)
+            fits.units[[k]] = fit
             dfbeta.units[k] = model$mu.hat - fit$mu.hat
             k = k + 1
         }
@@ -293,7 +292,7 @@ influence.gower = function(model, units, coders, ...)
         {
             mod.call$data = model$data[, -j]
             fit = eval(mod.call)
-            fits.coders = c(fits.coders, fit)
+            fits.coders[[k]] = fit
             dfbeta.coders[k] = model$mu.hat - fit$mu.hat
             k = k + 1
         }
@@ -333,10 +332,9 @@ influence.gower = function(model, units, coders, ...)
 #' @examples
 #'
 #' # Fit the liver data, using the mean distance for each row of the data matrix.
-#' # The range (which is equal to 4) must be passed to \code{\link{gower.agree}}
-#' # since these data are ordinal and the L1 distance function is used. We assume
-#' # a one-way sampling design for these data, i.e., units are random and coders
-#' # are fixed.
+#' # The range (which is equal to 4) must be passed to gower.agree since these
+#' # data are ordinal and the L1 distance function is used. We assume a one-way
+#' # sampling design for these data, i.e., units are random and coders are fixed.
 #'
 #' data(liver)
 #' liver = as.matrix(liver)
@@ -397,11 +395,10 @@ summary.gower = function(object, conf.level = 0.95, digits = 4, ...)
 #' @examples
 #'
 #' # Fit the liver data, using the mean distance for each row of the data matrix.
-#' # The range (which is equal to 4) must be passed to \code{\link{gower.agree}}
-#' # since these data are ordinal and the L1 distance function is used. We assume
-#' # a one-way sampling design for these data, i.e., units are random and coders
-#' # are fixed. Also compute a 95\% credible interval using the quantile method
-#' # and then the HPD method.
+#' # The range (which is equal to 4) must be passed to gower.agree since these data
+#' # are ordinal and the L1 distance function is used. We assume a one-way sampling
+#' # design for these data, i.e., units are random and coders are fixed. Also compute
+#' # a 95% credible interval using the quantile method and then the HPD method.
 #'
 #' data(liver)
 #' liver = as.matrix(liver)
